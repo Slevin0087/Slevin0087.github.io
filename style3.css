@@ -1,0 +1,101 @@
+html {
+  font-size: 24px;
+  /*Основная единица измерения*/
+  line-height: 1.15;
+  /*Стандартная высота строки*/
+  -webkit-text-size-adjust: 100%;
+  /*Отключает автоматическое увеличение текста в Safari*/
+  scroll-behavior: smooth;
+  /*Плавная прокрутка*/
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+/* .line1 {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  height: 1rem;
+  justify-content: flex-start;
+  width: 9%;
+  border: 0.1rem solid red;
+  font-weight: 600;
+  font-size: 0.4em;
+}
+
+.line2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 1rem;
+  width: 9%;
+  border: 1px solid black;
+}
+
+.lable_and_input {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  height: 1rem;
+  justify-content: flex-start;
+  border: 0.1rem solid red;
+  font-size: 0.4em;
+}
+
+#but_clean2 {
+  position: absolute;
+  right: 0;
+  background: #fff;
+  font: normal 0.5rem open_regular;
+  color: #333333;
+
+  border-radius: 1px;
+  text-align: center;
+
+  cursor: pointer;
+  border: 0.1em solid blue;
+} */
+
+#settings_all {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border: 1px solid black;
+  width: 10rem;
+  /* font-size: 1rem; */
+}
+
+.setting_block {
+  flex-grow: 1;
+  border: 1px solid blue;
+  font-size: 0.8rem;
+}
+
+.setting_block .txt_head {
+  /* display: block; */
+  /* font: 600 1.2rem open_bold; */
+  border: 1px solid red;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.user_action {
+  border: 1px solid forestgreen;
+}
+
+#additional_user_actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}

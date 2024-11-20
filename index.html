@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>пересекатор</title>
+  <link rel="stylesheet" media="screen and (min-device-width: 320px) and (max-device-width: 768px)" href="mobile.css" />
+  <!-- <link rel="stylesheet" media="screen and (min-width: 600px)" href="large.css" /> -->
+  <!-- <link rel="stylesheet" media="print" href="print.css" /> -->
+  <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+
+<body>
+  <div class="container">
+    <form id="formGeneration" class="form">
+      <div class="block_head">
+        <h1 class="txt_head">Генератор фраз</h1>
+      </div>
+      <div class="word_list">
+        <div class="word_list1">
+          <div class="line1">
+            <input id="checkbox1_list1_on" type="checkbox" checked="checked" name="checkbox4" style="display: none;">
+            <label class="txt_head_lable" for="checkbox1_list1_on">Список слов 1</label>
+          </div>
+          <div class="line2">
+            <button type="button" id="but_clean1">очистить</button>
+          </div>
+          <textarea id="word_value1" name="word1" placeholder="каждое слово с новой строки"></textarea>
+        </div>
+        <div class="word_list2">
+          <div class="line1">
+            <input id="checkbox1_list2_on" type="checkbox" name="checkbox5" style="display: none;" checked="checked">
+            <label class="txt_head_lable" for="checkbox1_list2_on">Список слов 2</label>
+          </div>
+          <div class="line2">
+            <div class="lable_and_input" style="display: none;">
+              <input id="checkbox1_list2_space" type="checkbox" checked="checked" name="checkbox6">
+              <label id="label_list2_space" for="checkbox1_list2_space">Пробел</label>
+            </div>
+            <button type="button" id="but_clean2">очистить</button>
+          </div>
+          <textarea id="word_value2" name="word2" placeholder="каждое слово с новой строки"></textarea>
+        </div>
+        <div class="word_list3">
+          <div class="line1">
+            <input id="checkbox1_list3_on" type="checkbox" checked="checked" name="checkbox7" style="display: none;">
+            <label class="txt_head_lable" for="checkbox1_list3_on">Список слов 3</label>
+          </div>
+          <div class="line2">
+            <div class="lable_and_input" style="display: none;">
+              <input id="checkbox1_list3_space" type="checkbox" checked="checked" name="checkbox8">
+              <label id="label_list3_space" for="checkbox1_list3_space">Пробел</label>
+            </div>
+            <button type="button" id="but_clean3">очистить</button>
+          </div>
+          <textarea id="word_value3" name="word3" placeholder="каждое слово с новой строки"></textarea>
+        </div>
+        <div class="word_list4">
+          <div class="line1">
+            <input id="checkbox1_list4_on" type="checkbox" checked="checked" name="checkbox9" style="display: none;">
+            <label class="txt_head_lable" for="checkbox1_list4_on">Список слов 4</label>
+          </div>
+          <div class="line2">
+            <div class="lable_and_input" style="display: none;">
+              <input id="checkbox1_list4_space" type="checkbox" checked="checked" name="checkbox10">
+              <label id="label_list4_space" for="checkbox1_list4_space">Пробел</label>
+            </div>
+            <button type="button" id="but_clean4">очистить</button>
+          </div>
+          <textarea id="word_value4" name="word4" placeholder="каждое слово с новой строки"></textarea>
+        </div>
+        <div class="word_list5">
+          <div class="line1">
+            <input id="checkbox1_list5_on" type="checkbox" checked="checked" name="checkbox11" style="display: none;">
+            <label class="txt_head_lable" for="checkbox1_list5_on">Список слов 5</label>
+          </div>
+          <div class="line2">
+            <div class="lable_and_input" style="display: none;">
+              <input id="checkbox1_list5_space" type="checkbox" checked="checked" name="checkbox12">
+              <label id="label_list5_space" for="checkbox1_list5_space">Пробел</label>
+            </div>
+            <button type="button" id="but_clean5">очистить</button>
+          </div>
+          <textarea id="word_value5" name="word5" placeholder="каждое слово с новой строки"></textarea>
+        </div>
+      </div>
+      <div class="cont_but">
+        <button type="submit" id="but_new_rezult">сгенерировать новый результат</button>
+        <button type="button" id="but_cleans">очистить поля</button>
+      </div>
+      <div class="cont_rezult">
+        <div class="txt_head">Результат<span id="rezult_count"></span></div>
+        <textarea id="rezult_out" name="rezult"></textarea>
+      </div>
+      <div class="rezult_copy_block">
+        <button type="button" id="rezult_copy" data-clipboard-action="cut"
+          data-clipboard-target="#rezult_out">скопировать результат в
+          буфер обмена</button>
+      </div>
+      <div id="settings_all">
+        <!-- <div id="block_set" class="div_setting"> -->
+        <div class="setting_block">
+          <div class="txt_head">Основные настройки:</div>
+          <div class="user_action">
+            <div class="label_block">
+              <input id="checkbox1_set1" type="checkbox" name="checkbox1">
+              <label class="label_set1_list" for="checkbox1_set1">Выбрать вручную списки для пересечения</label>
+            </div>
+            <div class="label_block">
+              <input id="checkbox2_set1" type="checkbox" name="checkbox2">
+              <label class="label_set1_list" for="checkbox2_set1">Выбрать вручную расстановку пробелов</label>
+            </div>
+            <div class="label_block">
+              <input id="checkbox3_set1" type="checkbox" name="checkbox3" checked="checked" value="checked">
+              <label class="label_set1_list" for="checkbox3_set1">Не учитывать пустые строки</label>
+            </div>
+          </div>
+        </div>
+        <div class="setting_block">
+          <!-- <div id="block_additional_settings" class="div_setting"> -->
+          <div class="txt_head">Повторяющиеся слова в разных списках:</div>
+          <div class="user_action">
+            <div class="label_block">
+              <input type="radio" id="check_radio1" name="radio_group1" checked="checked">
+              <label class="label_set2_list" for="check_radio1">Пересекать дубли</label>
+            </div>
+            <div class="label_block">
+              <input type="radio" id="check_radio2" name="radio_group1">
+              <label class="label_set2_list" for="check_radio2">Не пересекать дубли</label>
+            </div>
+            <div class="label_block">
+              <input type="radio" id="check_radio3" name="radio_group1">
+              <label class="label_set2_list" for="check_radio3">Если есть дубли, не формировать результат
+                пересечения</label>
+            </div>
+          </div>
+        </div>
+        <!-- <div id="block_additional_settings" class="div_setting"> -->
+        <div class="setting_block">
+          <div class="txt_head">Дополнительные
+            настройки:</div>
+          <div id="additional_user_actions">
+            <div class="user_action">
+              <div class="label_block">
+                <input id="checkbox1_additionally_set" type="checkbox" name="quotes" class="input_for_additionaly_set">
+                <label class="additional_checkbox_label" for="checkbox1_additionally_set">
+                  Добавить " "
+                </label>
+              </div>
+              <div class="label_block">
+                <input id="checkbox2_additionally_set" type="checkbox" name="isExclamation"
+                  class="input_for_additionaly_set">
+                <label class="additional_checkbox_label" for="checkbox2_additionally_set">
+                  Добавить "!"
+                </label>
+              </div>
+              <div class="label_block">
+                <input id="checkbox3_additionally_set" type="checkbox" name="isParentheses"
+                  class="input_for_additionaly_set">
+                <label class="additional_checkbox_label" for="checkbox3_additionally_set">
+                  Добавить [ ]
+                </label>
+              </div>
+            </div>
+            <div class="user_action">
+              <div class="label_block">
+                <input id="checkbox5_additionally_set" type="checkbox" name="isReplace"
+                  class="input_for_additionaly_set">
+                <label class="additional_checkbox_label" for="checkbox5_additionally_set">
+                  Заменить символ "-" на пробел
+                </label>
+              </div>
+              <div class="label_block">
+                <input id="checkbox6_additionally_set" type="checkbox" name="isRemove"
+                  class="input_for_additionaly_set">
+                <label class="additional_checkbox_label" for="checkbox6_additionally_set">
+                  Удалить " + ! . , [ ]
+                </label>
+              </div>
+              <div class="label_block">
+                <input id="checkbox7_additionally_set" type="checkbox" name="isIntoString"
+                  class="input_for_additionaly_set">
+                <label class="additional_checkbox_label" for="checkbox7_additionally_set">
+                  В строчку
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
