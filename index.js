@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const stileDisplay = 'flex';
     Object.values(spacesForLine2).forEach((element) => {
       // console.log(element);
-      displayCheckedFields(checkbox2Set1, element, stileDisplay);
+      displayCheckedFields(checkbox2Set1.checked, element, stileDisplay);
     })
   });
 
