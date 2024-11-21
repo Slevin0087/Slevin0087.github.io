@@ -374,6 +374,7 @@ document.addEventListener('DOMContentLoaded', function () {
     element.select();
     navigator.clipboard.writeText(element.value).then(() => {
       // element.value = '';
+      element.blur();
     }).catch((err) => {
       resultText.textContent = 'ошибка копирования';
     });
@@ -385,5 +386,40 @@ document.addEventListener('DOMContentLoaded', function () {
     copy(resultContainer);
     console.log('2:', resultContainer.textContent);
   })
+
+//   function unselectText(element) {
+//     setTimeout(() => {
+//         element.selectionStart = element.selectionEnd;
+//         element.blur();
+//     }, 0);
+// }
+
+// function copy(element) {
+//     let selectionSaved = false;
+
+//     element.addEventListener('mousedown', () => {
+//         selectionSaved = !!window.getSelection().toString(); // Сохраняем текущее выделение
+//     });
+
+//     element.addEventListener('mouseup', () => {
+//         if (!selectionSaved) {
+//             element.select(); // Выделяем весь текст
+//         }
+//         navigator.clipboard.writeText(element.value).then(() => {
+//             unselectText(element);
+//         }).catch((err) => {
+//             resultText.textContent = 'ошибка копирования';
+//         });
+//     });
+
+//     element.addEventListener('keydown', () => {
+//         unselectText(element);
+//     });
+// }
+
+// copyButton.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     copy(resultContainer);
+// });
 
 });
