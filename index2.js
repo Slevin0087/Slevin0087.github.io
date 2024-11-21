@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const copyButton = new ClipboardJS('#rezult_copy');
 
   const spaceColumn2 = document.getElementById('checkbox1_list2_space');
   const spaceColumn3 = document.getElementById('checkbox1_list3_space');
@@ -21,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const resultContainer = document.getElementById('rezult_out');
   const butRezult = document.getElementById('but_new_rezult');
   const resultText = document.getElementById('rezult_count');
+  const copyButton = document.getElementById('rezult_copy');
   const checkbox1Set1 = document.getElementById('checkbox1_set1');
   const checkbox2Set1 = document.getElementById('checkbox2_set1');
 
@@ -323,7 +323,10 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
     resultText.textContent = '';
     resultContainer.textContent = '';
+    console.log(resultContainer.textContent);
+    
     handleDuplicates();
+    console.log(resultContainer.textContent);
   })
 
   const removeDiv = document.getElementById('but_cleans');
@@ -365,6 +368,22 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
       }
     })
+  })
+
+  function copy(element) {
+    element.select();
+    navigator.clipboard.writeText(element.value).then(() => {
+      // element.value = '';
+    }).catch((err) => {
+      resultText.textContent = 'ошибка копирования';
+    });
+  }
+
+  copyButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('1:', resultContainer.textContent);
+    copy(resultContainer);
+    console.log('2:', resultContainer.textContent);
   })
 
 });
