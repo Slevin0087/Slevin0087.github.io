@@ -1,31 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // function renderForButsBlocksSets(state) {
-  //   if (state.style.height === 'auto') {
-  //     state.style.height = '0px';
-  //   } else if (state.style.height === '0px') {
-  //     state.style.height = 'auto';
-  //   }
-  // };
-
-  // const butSet = document.getElementById('but_set');
-  // butSet.addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   const state = {
-  //     blockSet: document.getElementById('block_set'),
-  //   };
-  //   renderForButsBlocksSets(state.blockSet);
-  // })
-
-  // const butAdditionalSet = document.getElementById('but_additional_set');
-  // butAdditionalSet.addEventListener('click', (e) => {
-  //   e.preventDefault()
-  //   const state = {
-  //     blockAdditionalSet: document.getElementById('block_additional_settings'),
-  //   };
-  //   renderForButsBlocksSets(state.blockAdditionalSet);
-  // })
-
-  const copyButton = new ClipboardJS('#rezult_copy');
 
   const spaceColumn2 = document.getElementById('checkbox1_list2_space');
   const spaceColumn3 = document.getElementById('checkbox1_list3_space');
@@ -47,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const resultContainer = document.getElementById('rezult_out');
   const butRezult = document.getElementById('but_new_rezult');
   const resultText = document.getElementById('rezult_count');
+  const copyButton = document.getElementById('rezult_copy');
   const checkbox1Set1 = document.getElementById('checkbox1_set1');
   const checkbox2Set1 = document.getElementById('checkbox2_set1');
 
@@ -173,8 +147,6 @@ document.addEventListener('DOMContentLoaded', function () {
         };
       }
     }
-    // console.log(state);
-
     return state;
   }
 
@@ -260,7 +232,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (selectedOption === 'intersect') {
 
       // Опция пересечения
-      const intersected = intersectLists(lists)
+      const intersected = intersectLists(lists);
+      console.log('intersected:', intersected);
+
 
       intersected.map((words) => {
         return phrases.push(concatWords(words));
@@ -269,20 +243,20 @@ document.addEventListener('DOMContentLoaded', function () {
       const ignoreDuplicatesRes = ignoreDuplicates(lists);
       console.log('ignoreDuplicatesRes:', ignoreDuplicatesRes);
       console.log('ignoreDuplicatesRes.length:', ignoreDuplicatesRes.length);
-      
+
       if (ignoreDuplicatesRes.length === 0) {
         resultText.textContent = '(фраз: 0)';
         return;
       } else {
-      // Опция игнорирования дубликатов
-      ignoreDuplicatesRes.forEach((words) => {
-        phrases.push(concatWords(words));
-      });
+        // Опция игнорирования дубликатов
+        ignoreDuplicatesRes.forEach((words) => {
+          phrases.push(concatWords(words));
+        });
       }
     } else if (selectedOption === 'skip') {
       // Опция пропуска при наличии дубликатов
       skipIfDuplicates(lists).forEach((words) => {
-        resultText.textContent = '(фраз: 0)';
+        // resultText.textContent = '(фраз: 0)';
         phrases.push(concatWords(words));
       });
     }
@@ -319,43 +293,40 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function intersectLists(lists) {
-  console.log('intersectLists', lists);
-
     return lists.reduce((acc, words) => {
-
-
       return acc.flatMap((prev) => words.map((word) => prev.concat([word])))
     }, [[]])
-    // .map((words) => words.join(" "))
-    // .join("\n");
   }
 
   function ignoreDuplicates(lists) {
-    console.log('ignoreDuplicates', lists);
-    
-    return lists.flatMap((list) => {
-      Array.from(list)
-  });
-  }
+    const result = [];
+    const intersectionArray = intersectLists(lists);
+    intersectionArray.map((array) => {
+      return result.push(Array.from(new Set(array)));
+    })
+    return result;
+  };
 
   function skipIfDuplicates(lists) {
-    const uniqueWords = new Set();
-    return lists.flatMap((list) => {
-      return list.filter((word) => {
-        if (uniqueWords.has(word)) {
-          return false;
-        }
-        uniqueWords.add(word);
-        return true;
-      });
-    });
+    const result = [];
+    const intersectionArray = intersectLists(lists);
+    intersectionArray.map((array) => {
+      if (Array.from(new Set(array)).length !== array.length) {
+        return;
+      }
+      return result.push(array);
+    })
+    return result;
   }
 
   butRezult.addEventListener('click', (e) => {
     e.preventDefault();
     resultText.textContent = '';
     resultContainer.textContent = '';
+    console.log(resultContainer.textContent);
+    
     handleDuplicates();
+    console.log(resultContainer.textContent);
   })
 
   const removeDiv = document.getElementById('but_cleans');
@@ -398,5 +369,57 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     })
   })
+
+  function copy(element) {
+    element.select();
+    navigator.clipboard.writeText(element.value).then(() => {
+      // element.value = '';
+      element.blur();
+    }).catch((err) => {
+      resultText.textContent = 'ошибка копирования';
+    });
+  }
+
+  copyButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('1:', resultContainer.textContent);
+    copy(resultContainer);
+    console.log('2:', resultContainer.textContent);
+  })
+
+//   function unselectText(element) {
+//     setTimeout(() => {
+//         element.selectionStart = element.selectionEnd;
+//         element.blur();
+//     }, 0);
+// }
+
+// function copy(element) {
+//     let selectionSaved = false;
+
+//     element.addEventListener('mousedown', () => {
+//         selectionSaved = !!window.getSelection().toString(); // Сохраняем текущее выделение
+//     });
+
+//     element.addEventListener('mouseup', () => {
+//         if (!selectionSaved) {
+//             element.select(); // Выделяем весь текст
+//         }
+//         navigator.clipboard.writeText(element.value).then(() => {
+//             unselectText(element);
+//         }).catch((err) => {
+//             resultText.textContent = 'ошибка копирования';
+//         });
+//     });
+
+//     element.addEventListener('keydown', () => {
+//         unselectText(element);
+//     });
+// }
+
+// copyButton.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     copy(resultContainer);
+// });
 
 });
