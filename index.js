@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     const textContent = resultText.textContent;
     if (textContent === '') {
-      resultText.textContent = '(фраз: 0)';
+      return resultText.textContent = '(фраз: 0)';
     } else {
       resultText.textContent = '(фраз: ' + `${result.length}` + ')';
     }
