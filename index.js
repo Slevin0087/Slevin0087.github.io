@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
     shuffle: document.getElementById('checkbox8_additionally_set'),
   }
 
-
   function getTextSettings() {
     return {
       isQuotes: settingsElements.quotes.checked,
@@ -68,21 +67,11 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   });
 
-  // const objSpacesCheck = {
-  //   check2: document.getElementById('checkbox1_list2_space'),
-  //   check3: document.getElementById('checkbox1_list3_space'),
-  //   check4: document.getElementById('checkbox1_list4_space'),
-  //   check5: document.getElementById('checkbox1_list5_space'),
-  // };
-
   const spacesForLine2 = document.getElementsByClassName('lable_and_input');
-  // console.log('spacesForLine2:', spacesForLine2);
-
 
   checkbox2Set1.addEventListener('click', (e) => {
     const stileDisplay = 'flex';
     Object.values(spacesForLine2).forEach((element) => {
-      // console.log(element);
       displayCheckedFields(checkbox2Set1.checked, element, stileDisplay);
     })
   });
@@ -150,16 +139,16 @@ document.addEventListener('DOMContentLoaded', function () {
     return state;
   }
 
-  function converterInArr(state) {
-    let arr = [];
-    const keys = Object.keys(state);
-    keys.map((key) => {
-      if (state[key].space === false) {
-        arr.push(state[key].element.value.trim().split('\n'));
-      }
-    })
-    return arr;
-  };
+  // function converterInArr(state) {
+  //   let arr = [];
+  //   const keys = Object.keys(state);
+  //   keys.map((key) => {
+  //     if (state[key].space === false) {
+  //       arr.push(state[key].element.value.trim().split('\n'));
+  //     }
+  //   })
+  //   return arr;
+  // };
 
   function updateLists() {
     const lists = [];
@@ -183,20 +172,6 @@ document.addEventListener('DOMContentLoaded', function () {
     return lists;
   }
 
-  function handleDuplicates() {
-    const option = getSelectedDuplicateOption();
-    switch (option) {
-      case 'intersect':
-        break;
-      case 'ignore':
-        break;
-      case 'skip':
-        break;
-    }
-    updateLists(); // Перегенерируем фразы после изменения настроек
-  }
-
-
   function getSelectedDuplicateOption() {
     if (checkRadio1.checked) {
       return 'intersect'; // Пересекать дубли
@@ -207,24 +182,59 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function handleDuplicates() {
+    const option = getSelectedDuplicateOption();
+    switch (option) {
+      case 'intersect':
+        break;
+      case 'ignore':
+        break;
+      case 'skip':
+        break;
+    }
+    updateLists(); // Перегенерация фразы после изменения настроек
+  }
+
+  function intersectLists(lists) {
+    return lists.reduce((acc, words) => {
+      return acc.flatMap((prev) => words.map((word) => prev.concat([word])))
+    }, [[]])
+  }
+
   function concatWords(words) {
     const state = getColumns();
     const keys = Object.keys(state);
-
     let finalWord = '';
-
     words.forEach((word, index) => {
       const key = keys[index];
       const isSpaceNeeded = state[key].space;
-
       finalWord += `${isSpaceNeeded ? ' ' : ''}${word}`;
     })
-
     return finalWord;
   }
 
+  function ignoreDuplicates(lists) {
+    const result = [];
+    const intersectionArray = intersectLists(lists);
+    intersectionArray.map((array) => {
+      return result.push(Array.from(new Set(array)));
+    })
+    return result;
+  };
+
+  function skipIfDuplicates(lists) {
+    const result = [];
+    const intersectionArray = intersectLists(lists);
+    intersectionArray.map((array) => {
+      if (Array.from(new Set(array)).length !== array.length) {
+        return;
+      }
+      return result.push(array);
+    })
+    return result;
+  }
+
   function generatePhrases(lists) {
-    console.log('generatePhrases(lists):', lists);
     const phrases = [];
     const selectedOption = getSelectedDuplicateOption();
 
@@ -233,17 +243,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Опция пересечения
       const intersected = intersectLists(lists);
-      console.log('intersected:', intersected);
-
-
       intersected.map((words) => {
         return phrases.push(concatWords(words));
       });
     } else if (selectedOption === 'ignore') {
       const ignoreDuplicatesRes = ignoreDuplicates(lists);
-      console.log('ignoreDuplicatesRes:', ignoreDuplicatesRes);
-      console.log('ignoreDuplicatesRes.length:', ignoreDuplicatesRes.length);
-
       if (ignoreDuplicatesRes.length === 0) {
         resultText.textContent = '(фраз: 0)';
         return;
@@ -256,12 +260,10 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (selectedOption === 'skip') {
       // Опция пропуска при наличии дубликатов
       skipIfDuplicates(lists).forEach((words) => {
-        // resultText.textContent = '(фраз: 0)';
         phrases.push(concatWords(words));
       });
     }
-    // const arr = converterInArr(getColumns());
-
+ 
     let result = phrases.map((phrase) => phrase.trimStart(phrase));
 
     const textSettings = getTextSettings();
@@ -288,46 +290,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (textSettings.isSquareBrackets) {
       result = result.map((phrase) => `[${phrase}]`);
     }
-    resultText.textContent = '(фраз: ' + `${result.length}` + ')';
+    const textContent = resultText.textContent;
+    if (textContent === '') {
+      resultText.textContent = '(фраз: 0)';
+    } else {
+      resultText.textContent = '(фраз: ' + `${result.length}` + ')';
+    }
     return resultContainer.textContent = result.join(textSettings.isIntoStrin ? ", " : "\n");
   }
 
-  function intersectLists(lists) {
-    return lists.reduce((acc, words) => {
-      return acc.flatMap((prev) => words.map((word) => prev.concat([word])))
-    }, [[]])
-  }
-
-  function ignoreDuplicates(lists) {
-    const result = [];
-    const intersectionArray = intersectLists(lists);
-    intersectionArray.map((array) => {
-      return result.push(Array.from(new Set(array)));
-    })
-    return result;
-  };
-
-  function skipIfDuplicates(lists) {
-    const result = [];
-    const intersectionArray = intersectLists(lists);
-    intersectionArray.map((array) => {
-      if (Array.from(new Set(array)).length !== array.length) {
-        return;
-      }
-      return result.push(array);
-    })
-    return result;
-  }
-
-  butRezult.addEventListener('click', (e) => {
-    e.preventDefault();
-    resultText.textContent = '';
-    resultContainer.textContent = '';
-    console.log(resultContainer.textContent);
-    
-    handleDuplicates();
-    console.log(resultContainer.textContent);
-  })
 
   const removeDiv = document.getElementById('but_cleans');
   removeDiv.addEventListener('click', (e) => {
@@ -370,10 +341,15 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 
+  butRezult.addEventListener('click', (e) => {
+    e.preventDefault();
+    resultContainer.textContent = '';
+    handleDuplicates();
+  })
+
   function copy(element) {
     element.select();
     navigator.clipboard.writeText(element.value).then(() => {
-      // element.value = '';
       element.blur();
     }).catch((err) => {
       resultText.textContent = 'ошибка копирования';
@@ -382,44 +358,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   copyButton.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('1:', resultContainer.textContent);
     copy(resultContainer);
-    console.log('2:', resultContainer.textContent);
   })
-
-//   function unselectText(element) {
-//     setTimeout(() => {
-//         element.selectionStart = element.selectionEnd;
-//         element.blur();
-//     }, 0);
-// }
-
-// function copy(element) {
-//     let selectionSaved = false;
-
-//     element.addEventListener('mousedown', () => {
-//         selectionSaved = !!window.getSelection().toString(); // Сохраняем текущее выделение
-//     });
-
-//     element.addEventListener('mouseup', () => {
-//         if (!selectionSaved) {
-//             element.select(); // Выделяем весь текст
-//         }
-//         navigator.clipboard.writeText(element.value).then(() => {
-//             unselectText(element);
-//         }).catch((err) => {
-//             resultText.textContent = 'ошибка копирования';
-//         });
-//     });
-
-//     element.addEventListener('keydown', () => {
-//         unselectText(element);
-//     });
-// }
-
-// copyButton.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     copy(resultContainer);
-// });
 
 });
