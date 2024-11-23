@@ -19,12 +19,16 @@
     box-sizing: border-box;
   }
 
+  body {
+    border: 1em solid red;
+    border-radius: 0.5em;
+  }
+
   header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 
@@ -258,7 +262,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 }
@@ -284,12 +287,16 @@
     box-sizing: border-box;
   }
 
+  body {
+    border: 1em solid red;
+    border-radius: 0.5em;
+  }
+
   header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 
@@ -525,7 +532,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 }
@@ -551,12 +557,16 @@
     box-sizing: border-box;
   }
 
+  body {
+    border: 1em solid red;
+    border-radius: 0.5em;
+  }
+
   header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 
@@ -791,7 +801,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 }
@@ -817,12 +826,16 @@
     box-sizing: border-box;
   }
 
+  body {
+    border: 1em solid red;
+    border-radius: 0.5em;
+  }
+
   header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 
@@ -1057,7 +1070,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 }
@@ -1083,12 +1095,17 @@
     box-sizing: border-box;
   }
 
+  body {
+    border: 1em solid red;
+    border-radius: 0.5em;
+  }
+
   header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 
@@ -1318,7 +1335,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 }
@@ -1344,12 +1360,16 @@
     box-sizing: border-box;
   }
 
+  body {
+    border: 1em solid red;
+    border-radius: 0.5em;
+  }
+
   header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 
@@ -1581,7 +1601,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    border: 1em solid red;
     font-size: 2em;
   }
 }
