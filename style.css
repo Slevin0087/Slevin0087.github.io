@@ -19,6 +19,15 @@
     box-sizing: border-box;
   }
 
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
+  }
+
   #container_for_generation_phrases {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -242,6 +251,15 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 2em;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
   }
 }
 
@@ -266,6 +284,15 @@
     box-sizing: border-box;
   }
 
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
+  }
+
   #container_for_generation_phrases {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -491,6 +518,15 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 2em;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
   }
 }
 
@@ -515,6 +551,15 @@
     box-sizing: border-box;
   }
 
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
+  }
+
   #container_for_generation_phrases {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -739,6 +784,15 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 2em;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
   }
 }
 
@@ -763,6 +817,15 @@
     box-sizing: border-box;
   }
 
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
+  }
+
   #container_for_generation_phrases {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -988,6 +1051,15 @@
     justify-content: flex-start;
     gap: 2em;
   }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
+  }
 }
 
 /* //////////////////////////////////////////////////////////// */
@@ -1009,6 +1081,15 @@
   *::before,
   *::after {
     box-sizing: border-box;
+  }
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
   }
 
   #container_for_generation_phrases {
@@ -1231,6 +1312,15 @@
     justify-content: flex-start;
     gap: 2em;
   }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
+  }
 }
 
 /* //////////////////////////////////////////////////////////// */
@@ -1252,6 +1342,15 @@
   *::before,
   *::after {
     box-sizing: border-box;
+  }
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
   }
 
   #container_for_generation_phrases {
@@ -1475,5 +1574,14 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 2em;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    border: 1em solid red;
+    font-size: 2em;
   }
 }
