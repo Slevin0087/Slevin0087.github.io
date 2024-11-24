@@ -254,7 +254,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 2em;
+    gap: 0.8em;
   }
 
   footer {
@@ -457,7 +457,7 @@
   }
 
   #rezult_out {
-    width: 95%;
+    width: 100%;
     height: 30em;
     margin-bottom: 1em;
     border: 0.1em solid #d95450;
@@ -524,7 +524,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 2em;
+    gap: 0.8em;
   }
 
   footer {
@@ -727,7 +727,7 @@
   }
 
   #rezult_out {
-    width: 95%;
+    width: 100%;
     height: 30em;
     margin-bottom: 1em;
     border: 0.1em solid #d95450;
@@ -793,7 +793,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 2em;
+    gap: 0.8em;
   }
 
   footer {
@@ -1034,10 +1034,12 @@
     gap: 0.8em;
     justify-content: flex-start;
     font-size: 1em;
+    border: 0.5em solid red;
   }
 
   .setting_block {
     flex-grow: 1;
+    border: 0.5em solid red;
   }
 
   #settings_all .txt_head {
@@ -1062,7 +1064,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 2em;
+    gap: 0.8em;
   }
 
   footer {
@@ -1261,7 +1263,7 @@
   }
 
   #rezult_out {
-    width: 80%;
+    width: 85%;
     height: 30em;
     margin-bottom: 1em;
     border: 0.1em solid #d95450;
@@ -1327,7 +1329,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 2em;
+    gap: 0.8em;
   }
 
   footer {
@@ -1527,7 +1529,7 @@
   }
 
   #rezult_out {
-    width: 80%;
+    width: 85%;
     height: 30em;
     margin-bottom: 1em;
     border: 0.1em solid #d95450;
