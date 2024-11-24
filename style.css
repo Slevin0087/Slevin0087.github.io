@@ -1098,7 +1098,7 @@
   }
 
   body {
-    border: 1em solid red;
+    border: 0.05em solid red;
     border-radius: 0.5em;
   }
 
